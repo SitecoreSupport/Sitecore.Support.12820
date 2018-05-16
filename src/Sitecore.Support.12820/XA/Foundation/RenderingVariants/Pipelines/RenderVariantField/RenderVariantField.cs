@@ -18,10 +18,13 @@ namespace Sitecore.Support.XA.Foundation.RenderingVariants.Pipelines.RenderVaria
       {
         return new LiteralControl();
       }
-      if (this.IsEmptyFieldToRender(variantField, args.Item) || this.IsFromSnippedAndEmpty(variantField, args.Item, args.IsControlEditable))
+      #region patch 12820
+      //Changed condition to check if we are editing in Experience Editor
+      if ((this.IsEmptyFieldToRender(variantField, args.Item) || this.IsFromSnippedAndEmpty(variantField, args.Item, args.IsControlEditable)) && !(Context.PageMode.IsExperienceEditorEditing))
       {
         return new LiteralControl();
       }
+      #endregion
       if (args.Item.Fields[variantField.FieldName] != null)
       {
         variantFieldNameLiteral = this.CreateFieldRenderer(variantField, args.Item, args.IsControlEditable, args.IsFromComposite);
