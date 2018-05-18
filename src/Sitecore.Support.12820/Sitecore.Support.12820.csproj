@@ -46,12 +46,12 @@
       <HintPath>..\packages\SC.Sitecore.Kernel.9.0.1\lib\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.XA.Foundation.RenderingVariants, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SXA90.Sitecore.XA.Foundation.RenderingVariants.1.6.0\lib\Sitecore.XA.Foundation.RenderingVariants.dll</HintPath>
+    <Reference Include="Sitecore.XA.Foundation.RenderingVariants">
+      <HintPath>..\packages\SXA90.Sitecore.XA.Foundation.RenderingVariants.1.7.0\lib\Sitecore.XA.Foundation.RenderingVariants.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.XA.Foundation.Variants.Abstractions, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SXA90.Sitecore.XA.Foundation.Variants.Abstractions.1.6.0\lib\Sitecore.XA.Foundation.Variants.Abstractions.dll</HintPath>
+    <Reference Include="Sitecore.XA.Foundation.Variants.Abstractions">
+      <HintPath>..\packages\SXA90.Sitecore.XA.Foundation.Variants.Abstractions.1.7.0\lib\Sitecore.XA.Foundation.Variants.Abstractions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
