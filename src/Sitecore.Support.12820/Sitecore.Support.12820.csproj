@@ -46,11 +46,15 @@
       <HintPath>..\packages\SC.Sitecore.Kernel.9.0.1\lib\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Abstractions, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SXA90.Sitecore.XA.Foundation.Abstractions.1.7.0\lib\Sitecore.XA.Foundation.Abstractions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Sitecore.XA.Foundation.RenderingVariants">
       <HintPath>..\packages\SXA90.Sitecore.XA.Foundation.RenderingVariants.1.7.0\lib\Sitecore.XA.Foundation.RenderingVariants.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.XA.Foundation.Variants.Abstractions">
+    <Reference Include="Sitecore.XA.Foundation.Variants.Abstractions, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SXA90.Sitecore.XA.Foundation.Variants.Abstractions.1.7.0\lib\Sitecore.XA.Foundation.Variants.Abstractions.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -86,7 +90,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63049/</IISUrl>
+          <IISUrl>http://localhost:62805/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

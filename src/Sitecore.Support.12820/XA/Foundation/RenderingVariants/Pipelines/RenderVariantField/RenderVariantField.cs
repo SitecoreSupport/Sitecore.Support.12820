@@ -13,41 +13,41 @@ namespace Sitecore.Support.XA.Foundation.RenderingVariants.Pipelines.RenderVaria
   {
     protected override Control Render(VariantField variantField, RenderVariantFieldArgs args)
     {
-      Control variantFieldNameLiteral;
       if (string.IsNullOrEmpty(variantField.FieldName))
       {
         return new LiteralControl();
       }
       #region patch 12820
-      //Changed condition to check if we are editing in Experience Editor
-      if ((this.IsEmptyFieldToRender(variantField, args.Item) || this.IsFromSnippedAndEmpty(variantField, args.Item, args.IsControlEditable)) && !(Context.PageMode.IsExperienceEditorEditing))
+      if (this.IsEmptyFieldToRender(variantField, args.Item) && !(Context.PageMode.IsExperienceEditorEditing && args.IsControlEditable))
       {
         return new LiteralControl();
       }
-      #endregion
+      #endregion patch 12820
+      Control control;
       if (args.Item.Fields[variantField.FieldName] != null)
       {
-        variantFieldNameLiteral = this.CreateFieldRenderer(variantField, args.Item, args.IsControlEditable, args.IsFromComposite);
-      }
-      else if (args.IsControlEditable && Context.PageMode.IsExperienceEditorEditing)
-      {
-        variantFieldNameLiteral = this.GetVariantFieldNameLiteral(variantField);
+        control = this.CreateFieldRenderer(variantField, args.Item, args.IsControlEditable, args.IsFromComposite);
       }
       else
       {
-        return new LiteralControl();
+        if (!args.IsControlEditable || !this.PageMode.IsExperienceEditorEditing)
+        {
+          return new LiteralControl();
+        }
+        control = this.GetVariantFieldNameLiteral(variantField);
       }
       variantField.IsLink = this.ProtectLink(variantField.FieldName, variantField.IsLink, args.Item);
-      variantFieldNameLiteral = this.HandleAffixAndLinkCreation(variantFieldNameLiteral, args.Item, variantField.Prefix, variantField.Suffix, variantField.IsLink, variantField.IsDownloadLink, variantField.IsPrefixLink, variantField.IsSuffixLink, variantField.LinkAttributes, variantField.LinkField, args.HrefOverrideFunc);
+      control = this.HandleAffixAndLinkCreation(control, args.Item, variantField.Prefix, variantField.Suffix, variantField.IsLink, variantField.IsDownloadLink, variantField.IsPrefixLink, variantField.IsSuffixLink, variantField.LinkAttributes, variantField.LinkField, args.HrefOverrideFunc);
       if (!string.IsNullOrWhiteSpace(variantField.Tag))
       {
-        HtmlGenericControl tag = new HtmlGenericControl(variantField.Tag);
-        this.AddClass(tag, $"{variantField.CssClass} {this.GetFieldCssClass(variantField.FieldName)}".Trim());
-        this.AddWrapperDataAttributes(variantField, args, tag);
-        this.MoveControl(variantFieldNameLiteral, tag);
-        variantFieldNameLiteral = tag;
+        HtmlGenericControl htmlGenericControl = new HtmlGenericControl(variantField.Tag);
+        this.AddClass(htmlGenericControl, string.Format("{0} {1}", variantField.CssClass, this.GetFieldCssClass(variantField.FieldName)).Trim());
+        this.AddWrapperDataAttributes(variantField, args, htmlGenericControl);
+        this.MoveControl(control, htmlGenericControl);
+        control = htmlGenericControl;
       }
-      return variantFieldNameLiteral;
+      return control;
     }
+
   }
 }
